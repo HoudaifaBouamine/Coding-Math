@@ -1,4 +1,5 @@
-window.onload = function(){
+
+rendringFun = function(){
 
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
@@ -7,6 +8,13 @@ window.onload = function(){
 
     var c_width = width * 0.5;
     var c_heigth = height * 0.5;
+
+    for(var i = 0;i < width;i++){
+        context.fillRect(i,c_heigth,1,1);
+    }
+    for(var i = 0;i < height;i++){
+        context.fillRect(c_width,i,1,1);
+    }
 
     for(var i = - c_width / 50;i<= c_width / 50;i+= 0.001){
 
@@ -24,4 +32,11 @@ window.onload = function(){
         
     }
 
+};
+
+window.onload = rendringFun;
+
+
+window.onresize = function(){
+    rendringFun();
 };
