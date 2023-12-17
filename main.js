@@ -17,11 +17,14 @@ window.onload = function(){
 
     function render(){
         moment += speed;
-        context.fillStyle = "white";
-        context.fillRect(0,0,width,height);
-        context.fillStyle = "black";
-        context.fillRect(c_width,c_heigth + 300 * Math.cos(moment),w,h);
 
+        context.clearRect(0,0,width,height);
+
+        context.fillRect(c_width - 20,c_heigth + 300 * Math.cos(moment),w,h);
+
+        context.beginPath();
+        context.arc(c_width + 20,400 - 100 * Math.cos(moment),30,0,Math.PI * 2,false);
+        context.fill();
         requestAnimationFrame(render);
         
     }
