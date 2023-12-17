@@ -1,42 +1,34 @@
 
-rendringFun = function(){
-
+window.onload = function(){
+    
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     var width = canvas.width = window.innerWidth;
     var height = canvas.height = window.innerHeight;
-
+    
     var c_width = width * 0.5;
     var c_heigth = height * 0.5;
 
-    for(var i = 0;i < width;i++){
-        context.fillRect(i,c_heigth,1,1);
-    }
-    for(var i = 0;i < height;i++){
-        context.fillRect(c_width,i,1,1);
-    }
+    var moment = 100;
+    var speed = 0.05;
+    var w = 20,h=20;
+    
+    render();
 
-    for(var i = - c_width / 50;i<= c_width / 50;i+= 0.001){
+    function render(){
+        moment += speed;
+        context.fillStyle = "white";
+        context.fillRect(0,0,width,height);
+        context.fillStyle = "black";
+        context.fillRect(c_width,c_heigth + 300 * Math.cos(moment),w,h);
 
-        var x = i * 50;
-        var y = -1 * (Math.cos(i) * 50);
-        
-        context.fillRect(x + c_width,y + c_heigth,2,2);
-        
-        y = -1 * (Math.sin(i) * 50) ;
-        context.fillRect(x + c_width,y + c_heigth,2,2);
-        
-        y = -1 * (Math.tan(i) * 50) ;
-        context.fillRect(x + c_width,y + c_heigth,2,2);
-        
+        requestAnimationFrame(render);
         
     }
-
+    
 };
 
-window.onload = rendringFun;
 
 
-window.onresize = function(){
-    rendringFun();
-};
+
+
