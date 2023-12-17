@@ -5,12 +5,12 @@ window.onload = function(){
     var width = canvas.width = window.innerWidth;
     var height = canvas.height = window.innerHeight;
 
-    //context.fillRect(0,0,width,height);
-    
-    for(var i = 0;i<100;i++){
-        context.beginPath();
-        context.moveTo(Math.random() * width,Math.random() * height);
-        context.lineTo(Math.random() * width,Math.random() * height);
-        context.stroke();
+    for(var i =0;i<= Math.PI * 10;i+= 0.01){
+        console.log("cos(" + i + ") = " + Math.cos(i));
+        var x = i * 50;
+        var y = -1 * (Math.cos(i) * 50) + width/2;
+
+        context.fillRect(x,y,2,2);
     }
+
 };
