@@ -17,7 +17,8 @@ window.onload = function(){
         y = 0,
         angle = 0,
         speed = 0.01,
-        radius = 200,
+        xRadius = 150,
+        yRadius = 250,
         xCenter = width/2,
         yCenter = height/2,
         frame = 0;
@@ -30,10 +31,10 @@ window.onload = function(){
         angle+=speed;
         context.clearRect(0,0,width,height);
 
-        draw_origin(context,width,height,xCenter,yCenter,radius/5,radius/5,5,5);
+        draw_origin(context,width,height,xCenter,yCenter,xRadius/5,xRadius/5,5,5);
 
-        x = radius * Math.cos(angle) + xCenter;
-        y = -1 * radius * Math.sin(angle) + yCenter;
+        x = xRadius * Math.cos(angle) + xCenter;
+        y = -1 * yRadius * Math.sin(angle) + yCenter;
         
         context.lineWidth = 1;
         context.beginPath();
