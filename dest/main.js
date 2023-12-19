@@ -4,19 +4,31 @@ window.onload = function () {
     var context = canvas.getContext("2d");
     var width = canvas.width = window.innerWidth;
     var height = canvas.height = window.innerHeight;
-    var c_width = width * 0.5;
-    var c_heigth = height * 0.5;
-    var moment = 100;
-    var speed = 0.05;
-    var w = 20, h = 20;
+    var x = 0, y = 0, angle = 0, speed = 0.01, radius = 200, xCenter = width / 2, yCenter = height / 2, frame = 0;
     render();
     function render() {
-        moment += speed;
+        angle += speed;
         context.clearRect(0, 0, width, height);
-        context.fillRect(c_width - 20, c_heigth + 300 * Math.cos(moment), w, h);
+        draw_origin(context, width, height, xCenter, yCenter);
+        x = radius * Math.cos(angle) + xCenter;
+        y = -1 * radius * Math.sin(angle) + yCenter;
         context.beginPath();
-        context.arc(c_width + 20, 400 - 100 * Math.cos(moment), 30, 0, Math.PI * 2, false);
+        context.arc(x, y, 10, 0, 2 * Math.PI);
         context.fill();
+        var info = document.getElementById("info");
+        if (frame % 5 == 0)
+            info.innerHTML = `  x : ${(Math.cos(angle)).toFixed(2)}, y : ${(Math.sin(angle)).toFixed(2)}`;
+        frame++;
         requestAnimationFrame(render);
+    }
+    function draw_origin(context, max_width, max_height, xOrigin, yOrigin) {
+        context.beginPath();
+        context.moveTo(0, yOrigin);
+        context.lineTo(width, yOrigin);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(xOrigin, 0);
+        context.lineTo(xOrigin, height);
+        context.stroke();
     }
 };
