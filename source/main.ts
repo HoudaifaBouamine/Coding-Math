@@ -15,8 +15,10 @@ window.onload = function(){
 
     var x = 0,
         y = 0,
-        angle = 0,
-        speed = 0.01,
+        xAngle = 0,
+        yAngle = 0,
+        ySpeed = 0.01,
+        xSpeed = 0.013,
         xRadius = 150,
         yRadius = 250,
         xCenter = width/2,
@@ -28,13 +30,14 @@ window.onload = function(){
         
     function render(){
         
-        angle+=speed;
+        xAngle+=xSpeed;
+        yAngle+=ySpeed;
         context.clearRect(0,0,width,height);
 
         draw_origin(context,width,height,xCenter,yCenter,xRadius/5,xRadius/5,5,5);
 
-        x = xRadius * Math.cos(angle) + xCenter;
-        y = -1 * yRadius * Math.sin(angle) + yCenter;
+        x = xRadius * Math.cos(xAngle) + xCenter;
+        y = -1 * yRadius * Math.sin(yAngle) + yCenter;
         
         context.lineWidth = 1;
         context.beginPath();
@@ -60,7 +63,7 @@ window.onload = function(){
         context.fill();
 
         if(frame % 5 == 0)
-            info.innerHTML = `  x : ${(Math.cos(angle)).toFixed(2)}, y : ${(Math.sin(angle)).toFixed(2)}`;
+            info.innerHTML = `  x : ${(Math.cos(xAngle)).toFixed(2)}, y : ${(Math.sin(yAngle)).toFixed(2)}`;
         frame++;
         
         requestAnimationFrame(render);
